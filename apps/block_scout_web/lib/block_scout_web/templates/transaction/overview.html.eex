@@ -137,14 +137,6 @@
                 <span>
                   <span data-from-now="<%= block.timestamp %>"></span>
                 </span>
-                <%= case processing_time_duration(@transaction) do %>
-                  <% :pending -> %>
-                    <% nil %>
-                  <% :unknown -> %>
-                    <% nil %>
-                  <% {:ok, interval_string} -> %>
-                    | <%= gettext("Confirmed within") %> <%= interval_string %>
-                <% end %>
               </dd>
             </dl>
           <% end %>

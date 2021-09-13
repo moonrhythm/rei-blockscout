@@ -1,8 +1,8 @@
 SYSTEM = $(shell uname -s)
 HOST = host.docker.internal
-DOCKER_IMAGE = blockscout_prod
+DOCKER_IMAGE = asia-southeast1-docker.pkg.dev/moonrhythm-finance/rei/blockscout:v3.7.3-beta
 BS_CONTAINER_NAME = blockscout
-PG_CONTAINER_NAME = postgres
+PG_CONTAINER_NAME = postgres_blockscout
 PG_CONTAINER_IMAGE = postgres:12.5
 THIS_FILE = $(lastword $(MAKEFILE_LIST))
 
@@ -10,7 +10,7 @@ ifeq ($(SYSTEM), Linux)
 	HOST=localhost
 endif
 
-DB_URL = postgresql://postgres:@$(HOST):5432/explorer?ssl=false
+DB_URL = ''
 BLOCKSCOUT_CONTAINER_PARAMS = -e 'MIX_ENV=prod' \
 															 -e 'DATABASE_URL=$(DB_URL)'
 ifeq ($(SYSTEM), Linux)
@@ -280,20 +280,21 @@ ifdef CUSTOM_CONTRACT_ADDRESSES_TEST_TOKEN
 endif
 
 HAS_BLOCKSCOUT_IMAGE := $(shell docker images | grep -sw ${DOCKER_IMAGE})
-build: 
+build:
 	@echo "==> Checking for blockscout image $(DOCKER_IMAGE)"
 ifdef HAS_BLOCKSCOUT_IMAGE
 	@echo "==> Image exist. Using $(DOCKER_IMAGE)"
 else
 	@echo "==> No image found trying to build one..."
 	@docker build --build-arg COIN="$(COIN)" -f ./Dockerfile -t $(DOCKER_IMAGE) ../
+	@docker push $(DOCKER_IMAGE)
 endif
 
 migrate_only:
 	@echo "==> Running migrations"
 	@docker run --rm \
 					$(BLOCKSCOUT_CONTAINER_PARAMS) \
-					$(DOCKER_IMAGE) /bin/sh -c "echo $$MIX_ENV && mix do ecto.create, ecto.migrate"
+					$(DOCKER_IMAGE) /bin/sh -c "echo $$MIX_ENV && mix do ecto.migrate"
 
 migrate: build postgres
 	@$(MAKE) -f $(THIS_FILE) migrate_only
@@ -324,7 +325,7 @@ else
 	@$(MAKE) -f $(THIS_FILE) migrate_only
 endif
 
-start: build postgres 
+start: build postgres
 	@echo "==> Starting blockscout"
 	@docker run --rm --name $(BS_CONTAINER_NAME) \
 					$(BLOCKSCOUT_CONTAINER_PARAMS) \
@@ -337,4 +338,4 @@ run: start
 				migrate \
 				start \
 				postgres \
-				run 
+				run
