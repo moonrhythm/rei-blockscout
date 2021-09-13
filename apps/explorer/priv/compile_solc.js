@@ -15,6 +15,9 @@ var solc = solc.setupMethods(compilerSnapshot);
 var fs = require('fs');
 var sourceCode = fs.readFileSync(sourceCodePath, 'utf8');
 
+// remove license to fix solc multiple licenses error
+sourceCode = sourceCode.replace(/(\/\/\W*SPDX-License-Identifier:.*)$/gmi, '')
+
 var settings = {
     optimizer: {
       enabled: optimize == '1',
