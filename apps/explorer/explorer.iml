@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="ELIXIR_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../_build/dev/lib/explorer/ebin" />
+    <output-test url="file://$MODULE_DIR$/../../_build/test/lib/explorer/ebin" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/lib" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/assets/node_modules/phoenix" />
+      <excludeFolder url="file://$MODULE_DIR$/assets/node_modules/phoenix_html" />
+      <excludeFolder url="file://$MODULE_DIR$/cover" />
+      <excludeFolder url="file://$MODULE_DIR$/deps" />
+      <excludeFolder url="file://$MODULE_DIR$/doc" />
+      <excludeFolder url="file://$MODULE_DIR$/logs" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="bcrypt_elixir" level="project" />
+    <orderEntry type="library" name="benchee" level="project" />
+    <orderEntry type="library" name="benchee_csv" level="project" />
+    <orderEntry type="library" name="bypass" level="project" />
+    <orderEntry type="library" name="briefly" level="project" />
+    <orderEntry type="library" name="comeonin" level="project" />
+    <orderEntry type="library" name="credo" level="project" />
+    <orderEntry type="library" name="dataloader" level="project" />
+    <orderEntry type="library" name="decimal" level="project" />
+    <orderEntry type="library" name="dialyxir" level="project" />
+    <orderEntry type="library" name="ecto" level="project" />
+    <orderEntry type="library" name="ecto_sql" level="project" />
+    <orderEntry type="module" module-name="ethereum_jsonrpc" />
+    <orderEntry type="library" name="ex_machina" level="project" />
+    <orderEntry type="library" name="exvcr" level="project" />
+    <orderEntry type="library" name="httpoison" level="project" />
+    <orderEntry type="library" name="jason" level="project" />
+    <orderEntry type="library" name="junit_formatter" level="project" />
+    <orderEntry type="library" name="logger_file_backend" level="project" />
+    <orderEntry type="library" name="math" level="project" />
+    <orderEntry type="library" name="mock" level="project" />
+    <orderEntry type="library" name="mox" level="project" />
+    <orderEntry type="library" name="poison" level="project" />
+    <orderEntry type="library" name="nimble_csv" level="project" />
+    <orderEntry type="library" name="postgrex" level="project" />
+    <orderEntry type="library" name="prometheus" level="project" />
+    <orderEntry type="library" name="prometheus_ecto" level="project" />
+    <orderEntry type="library" name="plug_cowboy" level="project" />
+    <orderEntry type="library" name="que" level="project" />
+    <orderEntry type="library" name="sobelow" level="project" />
+    <orderEntry type="library" name="spandex" level="project" />
+    <orderEntry type="library" name="spandex_datadog" level="project" />
+    <orderEntry type="library" name="spandex_ecto" level="project" />
+    <orderEntry type="library" name="telemetry" level="project" />
+    <orderEntry type="library" name="timex" level="project" />
+    <orderEntry type="library" name="con_cache" level="project" />
+    <orderEntry type="library" name="tesla" level="project" />
+  </component>
+</module>
