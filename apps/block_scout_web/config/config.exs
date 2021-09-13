@@ -16,7 +16,7 @@ config :block_scout_web,
   checksum_address_hashes: if(System.get_env("CHECKSUM_ADDRESS_HASHES", "true") == "false", do: false, else: true)
 
 config :block_scout_web, BlockScoutWeb.Chain,
-  network: System.get_env("NETWORK"),
+  network: "Rei",
   subnetwork: System.get_env("SUBNETWORK"),
   network_icon: System.get_env("NETWORK_ICON"),
   logo: System.get_env("LOGO"),
@@ -31,7 +31,7 @@ config :block_scout_web, BlockScoutWeb.Chain,
   staking_pool_list_refresh_interval: 5
 
 config :block_scout_web,
-  link_to_other_explorers: System.get_env("LINK_TO_OTHER_EXPLORERS") == "true",
+  link_to_other_explorers: false,
   other_explorers: System.get_env("OTHER_EXPLORERS"),
   other_networks: System.get_env("SUPPORTED_CHAINS"),
   webapp_url: System.get_env("WEBAPP_URL"),
@@ -117,19 +117,9 @@ config :block_scout_web, BlockScoutWeb.SocialMedia,
   instagram: "PoaNetwork"
 
 # Configures History
-price_chart_config =
-  if System.get_env("SHOW_PRICE_CHART", "true") != "false" do
-    %{market: [:price, :market_cap]}
-  else
-    %{}
-  end
+price_chart_config = %{}
 
-tx_chart_config =
-  if System.get_env("SHOW_TXS_CHART", "false") == "true" do
-    %{transactions: [:transactions_per_day]}
-  else
-    %{}
-  end
+tx_chart_config = %{}
 
 config :block_scout_web,
   chart_config: Map.merge(price_chart_config, tx_chart_config)
