@@ -85,6 +85,45 @@ config :explorer, Explorer.Counters.BlockPriorityFeeCounter,
 config :explorer, Explorer.Chain.Cache.GasUsage,
   enabled: System.get_env("CACHE_ENABLE_TOTAL_GAS_USAGE_COUNTER") == "true"
 
+cache_bridge_market_cap_update_interval = System.get_env("CACHE_BRIDGE_MARKET_CAP_UPDATE_INTERVAL")
+
+bridge_market_cap_update_interval =
+  if cache_bridge_market_cap_update_interval do
+    case Integer.parse(cache_bridge_market_cap_update_interval) do
+      {integer, ""} -> integer
+      _ -> nil
+    end
+  end
+
+#config :explorer, Explorer.Counters.Bridge,
+#  enabled: if(System.get_env("SUPPLY_MODULE") === "TokenBridge", do: true, else: false),
+#  enable_consolidation: System.get_env("DISABLE_BRIDGE_MARKET_CAP_UPDATER") !== "true",
+#  update_interval_in_seconds: bridge_market_cap_update_interval || 30 * 60,
+#  disable_lp_tokens_in_market_cap: System.get_env("DISABLE_LP_TOKENS_IN_MARKET_CAP") == "true"
+
+config :explorer, Explorer.Counters.Bridge, enabled: false
+
+#config :explorer, Explorer.ExchangeRates,
+#  enabled: System.get_env("DISABLE_EXCHANGE_RATES") != "true",
+#  store: :ets,
+#  coingecko_coin_id: System.get_env("EXCHANGE_RATES_COINGECKO_COIN_ID"),
+#  coingecko_api_key: System.get_env("EXCHANGE_RATES_COINGECKO_API_KEY"),
+#  coinmarketcap_api_key: System.get_env("EXCHANGE_RATES_COINMARKETCAP_API_KEY"),
+#  fetch_btc_value: System.get_env("EXCHANGE_RATES_FETCH_BTC_VALUE") == "true"
+#
+#exchange_rates_source =
+#  cond do
+#    System.get_env("EXCHANGE_RATES_SOURCE") == "token_bridge" -> Explorer.ExchangeRates.Source.TokenBridge
+#    System.get_env("EXCHANGE_RATES_SOURCE") == "coin_gecko" -> Explorer.ExchangeRates.Source.CoinGecko
+#    System.get_env("EXCHANGE_RATES_SOURCE") == "coin_market_cap" -> Explorer.ExchangeRates.Source.CoinMarketCap
+#    true -> Explorer.ExchangeRates.Source.CoinGecko
+#  end
+#
+#config :explorer, Explorer.ExchangeRates.Source, source: exchange_rates_source
+config :explorer, Explorer.ExchangeRates, enabled: false, store: :ets
+
+config :explorer, Explorer.KnownTokens, enabled: System.get_env("DISABLE_KNOWN_TOKENS") != "true", store: :ets
+
 config :explorer, Explorer.Integrations.EctoLogger, query_time_ms_threshold: :timer.seconds(2)
 
 config :explorer, Explorer.Chain.Cache.MinMissingBlockNumber, enabled: System.get_env("DISABLE_WRITE_API") != "true"

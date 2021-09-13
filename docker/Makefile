@@ -1,6 +1,6 @@
 SYSTEM := $(shell uname -s)
 HOST := host.docker.internal
-DOCKER_REPO := blockscout
+DOCKER_REPO := asia-southeast1-docker.pkg.dev/moonrhythm-finance/rei
 APP_NAME := blockscout
 BS_CONTAINER_IMAGE := $(DOCKER_REPO)/$(APP_NAME)
 BS_CONTAINER_NAME := blockscout
@@ -20,6 +20,7 @@ else
 	DB_URL = postgresql://postgres:@$(HOST):5432/blockscout?ssl=false
 	ECTO_USE_SSL = 'false'
 endif
+
 BLOCKSCOUT_CONTAINER_PARAMS = -e 'MIX_ENV=prod' \
 															 -e 'DATABASE_URL=$(DB_URL)'
 ifeq ($(SYSTEM), Linux)
@@ -394,6 +395,7 @@ ifdef HAS_BLOCKSCOUT_IMAGE
 else
 	@echo "==> No image found, trying to build one..."
 	@docker build --build-arg COIN="$(COIN)" -f ./Dockerfile -t $(BS_CONTAINER_IMAGE) ../
+	@docker push $(BS_CONTAINER_IMAGE)
 endif
 
 migrate_only:
