@@ -73,27 +73,9 @@
           <%= if queryable?(function["inputs"]) do %>
             <%= for input <- function["inputs"] do %>
               <div class="form-group pr-3 d-flex" style="margin: 0.5rem 0 !important;">
-                <%= if int?(input["type"]) do %>
-                  <input type="number" name="function_input" class="form-control form-control-sm address-input-sm"
-                  placeholder='<%= input["name"] %>(<%= input["type"] %>)'
-                  style="width: <%= (String.length(input["name"]) + String.length(input["type"]) + 2) * 10 %>px;"/>
-                  <span data-dropdown-toggle="" data-toggle="dropdown">
-                    <span class="button btn-line button-xs contract-plus-btn-container ml-1">
-                      <i class="fa fa-plus contract-plus-btn"></i>
-                    </span>
-                    <div class="dropdown-menu exponention-dropdown">  
-                      <div class="dropdown-item contract-exponentiation-btn" data-power=6>10<sup>6</sup></div>
-                      <div class="dropdown-item contract-exponentiation-btn" data-power=8>10<sup>8</sup></div>
-                      <div class="dropdown-item contract-exponentiation-btn" data-power=18>10<sup>18</sup></div>
-                      <div class="dropdown-item contract-exponentiation-btn" data-power><input type="number" name="custom_power" class="form-control form-control-sm address-input-sm ml-1 custom-power-input" />10</div> 
-                    </div>
-                  </span>
-
-                <% else %>
                   <input type="text" name="function_input" class="form-control form-control-sm address-input-sm" 
                   placeholder='<%= input["name"] %>(<%= input["type"] %>)' 
                   size="<%= String.length(input["name"]) + String.length(input["type"]) + 2 %>" />
-                <% end %>
               </div>
             <% end %>
           <% end %>
@@ -135,21 +117,7 @@
                     to: address_path(@conn, :show, output["value"])) %><%= if not_last_element?(length, index) do %>,&#160;<% end %>
                 </div>
               <% else %>
-                <%= if output["type"] == "uint256" do %>
-                  <div class="py-2 word-break-all">
-                    <div data-wei-ether-converter>
-                      <i>(uint256):</i>
-                      <span data-conversion-unit data-original-value="<%= output["value"] %>"><%= output["value"] %></span>
-                      <span class="py-2 px-2">
-                        <input class="wei-ether" type="checkbox" autocomplete="off">
-                        <span class="d-inline-block" data-conversion-text-wei><%= gettext("WEI")%></span>
-                        <span class="d-none" data-conversion-text-eth><%= gettext("ETH")%></span>
-                      </span>
-                    </div>
-                  </div> 
-                <% else %>
-                  <div class="align-self-center function-output <%= if not_last_element?(length, index), do: "mb-1" %>"><%= raw(values_with_type(output["value"], output["type"], [output["name"]], 0, output["components"])) %></div>
-                <% end %>
+                <div class="align-self-center function-output <%= if not_last_element?(length, index), do: "mb-1" %>"><%= raw(values_with_type(output["value"], output["type"], [output["name"]], 0, output["components"])) %></div>
               <% end %>
             <% end %>
           </div>
