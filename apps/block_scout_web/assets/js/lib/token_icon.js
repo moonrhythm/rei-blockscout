@@ -1,24 +1,5 @@
 function getTokenIconUrl (chainID, addressHash) {
-  let chainName = null
-  switch (chainID) {
-    case '1':
-      chainName = 'ethereum'
-      break
-    case '99':
-      chainName = 'poa'
-      break
-    case '100':
-      chainName = 'xdai'
-      break
-    default:
-      chainName = null
-      break
-  }
-  if (chainName) {
-    return `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/${chainName}/assets/${addressHash}/logo.png`
-  } else {
-    return null
-  }
+  return `https://cdn.kururu.finance/coins/eth/${chainID}/${addressHash.toLowerCase()}`
 }
 
 function appendTokenIcon ($tokenIconContainer, chainID, addressHash, foreignChainID, foreignAddressHash, displayTokenIcons, size) {
