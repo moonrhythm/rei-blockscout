@@ -9,8 +9,6 @@ PG_CONTAINER_NAME := db
 THIS_FILE = $(lastword $(MAKEFILE_LIST))
 TAG := $(RELEASE_VERSION)-prerelease-$(shell git log -1 --pretty=format:"%h")
 STABLE_TAG := $(RELEASE_VERSION)
-LOGO = "/images/rei_logo.svg"
-LOGO_FOOTER = "/images/rei_logo.svg"
 
 ifeq ($(SYSTEM), Linux)
 	HOST=localhost
