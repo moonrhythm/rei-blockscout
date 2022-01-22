@@ -2339,7 +2339,7 @@ msgstr ""
 #, elixir-format
 #: lib/block_scout_web/templates/address/overview.html.eex:103
 msgid "The name of the validator."
-msgstr ""
+msgstr "The name of the address."
 
 #, elixir-format
 #: lib/block_scout_web/templates/stakes/_table.html.eex:43
@@ -2952,7 +2952,7 @@ msgstr ""
 #, elixir-format
 #: lib/block_scout_web/templates/address/overview.html.eex:104
 msgid "Validator Name"
-msgstr ""
+msgstr "Name"
 
 #, elixir-format
 #: lib/block_scout_web/templates/stakes/_table.html.eex:8
