@@ -239,7 +239,7 @@
     },
 
     revertOp() {
-        this.topCall().error = 'execution reverted';
+        this.topCall().error = 'Reverted';
     },
 
     // result is invoked when all the opcodes have been iterated over and returns
@@ -278,23 +278,14 @@
             valueBigInt: bigInt(ctx.value.toString(10)),
             gasBigInt: bigInt(ctx.gas),
             gasUsedBigInt: bigInt(ctx.gasUsed),
-            input: toHex(ctx.input)
+            input: toHex(ctx.input),
+            output: toHex(ctx.output),
+            error: this.error(ctx)
         };
 
         this.putBottomChildCalls(result);
-        this.putErrorOrOutput(result, ctx);
 
         return result;
-    },
-
-    putErrorOrOutput(result, ctx) {
-        const error = this.error(ctx);
-
-        if (error !== undefined) {
-            result.error = error;
-        } else {
-            result.output = toHex(ctx.output);
-        }
     },
 
     ctxToCreate(ctx, db) {
