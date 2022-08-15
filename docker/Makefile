@@ -1,8 +1,8 @@
 SYSTEM := $(shell uname -s)
 HOST := host.docker.internal
-DOCKER_REPO := asia-southeast1-docker.pkg.dev/moonrhythm-finance/rei
+DOCKER_REPO := asia-southeast1-docker.pkg.dev/reichain/docker
 APP_NAME := blockscout
-BS_CONTAINER_IMAGE := $(DOCKER_REPO)/$(APP_NAME)
+BS_CONTAINER_IMAGE := $(DOCKER_REPO)/$(APP_NAME):v4.1.3-beta
 BS_CONTAINER_NAME := blockscout
 PG_CONTAINER_IMAGE := postgres:13.6
 PG_CONTAINER_NAME := db
