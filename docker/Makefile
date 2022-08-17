@@ -428,6 +428,12 @@ migrate_only:
 					$(BLOCKSCOUT_CONTAINER_PARAMS) \
 					$(BS_CONTAINER_IMAGE) /bin/sh -c "echo $$MIX_ENV && mix do ecto.create, ecto.migrate"
 
+migrate_only_2:
+	@echo "==> Running migrations"
+	@docker run --rm \
+					$(BLOCKSCOUT_CONTAINER_PARAMS) \
+					$(BS_CONTAINER_IMAGE) /bin/sh -c "echo $$MIX_ENV && mix do ecto.migrate"
+
 migrate: build postgres
 	@$(MAKE) -f $(THIS_FILE) migrate_only
 
