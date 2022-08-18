@@ -64,7 +64,6 @@ msgid "%{subnetwork} Explorer - BlockScout"
 msgstr "Rei %{subnetwork} Explorer"
 
 #, elixir-format
-=======
 #: lib/block_scout_web/templates/stakes/_metatags.html.eex:2
 msgid "%{subnetwork} Staking DApp - BlockScout"
 msgstr "Rei %{subnetwork} Staking DApp - BlockScout"
